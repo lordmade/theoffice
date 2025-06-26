@@ -23,6 +23,10 @@
             color: #1f2937;
             line-height: 1.6;
         }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -32,14 +36,14 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: #21211d;
+            background-color: #FEE830;
             color: #ffffff;
             padding: 16px 0;
             z-index: 50;
             transition: background-color 0.3s ease;
         }
         nav.navbar-scrolled {
-            background-color: rgba(33, 33, 29, 0.9);
+            background-color: rgba(254, 232, 48, 0.9);
             backdrop-filter: blur(10px);
         }
         nav .container {
@@ -81,7 +85,9 @@
         }
         nav .nav-link:hover {
             transform: scale(1.1);
-            color: #FEE830;
+            color: #000000;
+            background-color: #ffffff;
+            border-radius: 4px;
         }
         nav .nav-link::after {
             content: '';
@@ -90,7 +96,7 @@
             height: 2px;
             bottom: -2px;
             left: 0;
-            background: linear-gradient(to right, #FEE830, #FFFFFF);
+            background: #000000;
             transition: width 0.3s ease;
         }
         nav .nav-link:hover::after {
@@ -102,7 +108,7 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #21211d;
+            background-color: #FEE830;
             min-width: 160px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 4px;
@@ -123,8 +129,30 @@
             transition: all 0.3s ease;
         }
         .dropdown-content a:hover {
-            background-color: #FEE830;
-            color: #21211d;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 10px;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
         section {
             padding: 64px 0;
@@ -133,8 +161,8 @@
             position: relative;
             min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-end;
             text-align: center;
             overflow: hidden;
         }
@@ -146,6 +174,11 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
+        }
+        .hero-bg .container {
+            position: absolute;
+            bottom: 32px;
+            width: 100%;
         }
         .hero-logo {
             max-width: 200px;
@@ -210,19 +243,61 @@
         }
         @media (max-width: 768px) {
             h1 {
-                font-size: 36px;
+                font-size: 32px;
             }
             p {
-                font-size: 16px;
+                font-size: 14px;
+            }
+            .container {
+                padding: 0 12px;
             }
             nav .nav-links {
-                gap: 16px;
+                display: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 250px;
+                background-color: #FEE830;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 60px 20px;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+            nav .nav-links.active {
+                display: flex;
+                transform: translateX(0);
+            }
+            nav .nav-link {
+                font-size: 18px;
+                padding: 10px 0;
+                width: 100%;
+            }
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                background-color: rgba(255, 255, 255, 0.1);
+                min-width: 100%;
+            }
+            .dropdown-content a {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+            .hamburger {
+                display: flex;
             }
             nav .nav-logo {
                 height: 24px;
             }
-            .dropdown-content {
-                min-width: 120px;
+            .section-title {
+                font-size: 28px;
+            }
+            .card {
+                padding: 16px;
+            }
+            .btn {
+                padding: 10px 20px;
             }
         }
     </style>
@@ -233,7 +308,12 @@
             <div class="logo-container">
                 <img src="https://i.postimg.cc/k4WTpQLX/Whats-App-Image-2025-06-26-at-15-49-46-1-removebg-preview.png" alt="The Office Logo" class="nav-logo">
             </div>
-            <div class="nav-links">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="services.html" class="nav-link">Our Services</a>
                 <div class="dropdown">
@@ -252,15 +332,12 @@
 
     <section id="home" class="hero-bg">
         <video autoplay loop muted playsinline poster="https://i.postimg.cc/pTKWTS5Q/Whats-App-Image-2025-06-26-at-14-40-25.jpg">
-            <source src="video1.mp4" type="video/mp4">
+            <source src="https://videos.pexels.com/video-files/855430/855430-hd_1920_1080_30fps.mp4" type="video/mp4">
+            <source src="https://videos.pexels.com/video-files/855430/855430-hd_1920_1080_30fps.webm" type="video/webm">
             Your browser does not support the video tag.
         </video>
         <div class="container text-center">
-            <br>
-            <br>
-            <br>
             <div class="card">
-               
                 <a href="about.html" class="btn">Get Our Services</a>
             </div>
         </div>
@@ -302,17 +379,24 @@
             }
         });
 
-        // Toggle dropdown on click for touch devices
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
         const dropdown = document.querySelector('.dropdown');
         dropdown.addEventListener('click', (e) => {
             e.preventDefault();
             dropdown.classList.toggle('active');
         });
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
-            if (!dropdown.contains(e.target)) {
+            if (!dropdown.contains(e.target) && !hamburger.contains(e.target) && !navLinks.contains(e.target)) {
                 dropdown.classList.remove('active');
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
             }
         });
     </script>
