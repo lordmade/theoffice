@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Office - Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         @font-face {
             font-family: 'Anklepants';
@@ -82,6 +83,8 @@
             position: relative;
             transition: all 0.3s ease;
             font-size: 16px;
+            display: flex;
+            align-items: center;
         }
         nav .nav-link:hover {
             transform: scale(1.1);
@@ -101,6 +104,9 @@
         }
         nav .nav-link:hover::after {
             width: 100%;
+        }
+        .nav-link i, .dropdown-content a i {
+            margin-right: 8px;
         }
         .dropdown {
             position: relative;
@@ -124,7 +130,8 @@
             font-family: 'Anklepants', serif;
             color: #ffffff;
             padding: 12px 16px;
-            display: block;
+            display: flex;
+            align-items: center;
             font-size: 14px;
             transition: all 0.3s ease;
         }
@@ -231,6 +238,12 @@
             font-weight: 600;
             margin-bottom: 8px;
         }
+        .card i {
+            font-size: 24px;
+            color: #FEE830;
+            margin-bottom: 8px;
+            display: block;
+        }
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -275,6 +288,9 @@
                 padding: 10px 0;
                 width: 100%;
             }
+            nav .nav-link i {
+                font-size: 18px;
+            }
             .dropdown-content {
                 position: static;
                 box-shadow: none;
@@ -284,6 +300,9 @@
             .dropdown-content a {
                 font-size: 16px;
                 padding: 10px 20px;
+            }
+            .dropdown-content a i {
+                font-size: 16px;
             }
             .hamburger {
                 display: flex;
@@ -296,6 +315,9 @@
             }
             .card {
                 padding: 16px;
+            }
+            .card i {
+                font-size: 20px;
             }
             .btn {
                 padding: 10px 20px;
@@ -318,26 +340,26 @@
                 <span></span>
             </div>
             <div class="nav-links" id="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="services.html" class="nav-link">Our Services</a>
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-home"></i> Home</a>
+                <a href="services.html" class="nav-link"><i class="fa-solid fa-cogs"></i> Our Services</a>
                 <div class="dropdown">
-                    <a href="services.html" class="nav-link">Bookings</a>
+                    <a href="services.html" class="nav-link"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
                     <div class="dropdown-content">
-                        <a href="#booking-exam">For Exam</a>
-                        <a href="#conference">Conference</a>
-                        <a href="#others">Others</a>
+                        <a href="#booking-exam"><i class="fa-solid fa-graduation-cap"></i> For Exam</a>
+                        <a href="#conference"><i class="fa-solid fa-users-rectangle"></i> Conference</a>
+                        <a href="#others"><i class="fa-solid fa-ellipsis"></i> Others</a>
                     </div>
                 </div>
-                <a href="greatwall.html" class="nav-link">Great Wall</a>
-                <a href="notice.html" class="nav-link">Notice Board</a>
+                <a href="greatwall.html" class="nav-link"><i class="fa-solid fa-building"></i> Great Wall</a>
+                <a href="notice.html" class="nav-link"><i class="fa-solid fa-bell"></i> Notice Board</a>
             </div>
         </div>
     </nav>
 
     <section id="home" class="hero-bg">
-        <video autoplay loop muted playsinline poster="video1.mp4">
-            <source src="video1.mp4" type="video/mp4">
-            
+        <video autoplay loop muted playsinline poster="https://i.postimg.cc/pTKWTS5Q/Whats-App-Image-2025-06-26-at-14-40-25.jpg">
+            <source src="https://videos.pexels.com/video-files/855430/855430-hd_1920_1080_30fps.mp4" type="video/mp4">
+            <source src="https://videos.pexels.com/video-files/855430/855430-hd_1920_1080_30fps.webm" type="video/webm">
             Your browser does not support the video tag.
         </video>
         <div class="container text-center">
@@ -352,14 +374,17 @@
             <h2 class="section-title text-center">Why Choose The Office</h2>
             <div class="grid">
                 <div class="card">
+                    <i class="fa-solid fa-bullseye"></i>
                     <h3>Our Mission</h3>
                     <p>Inspiring individuals to express their uniqueness through innovative print solutions, fostering a creative and inclusive community.</p>
                 </div>
                 <div class="card">
+                    <i class="fa-solid fa-print"></i>
                     <h3>Our Services</h3>
                     <p>Offering high-quality printing, copying, and graphic design services to bring your ideas to life with clarity and craftsmanship.</p>
                 </div>
                 <div class="card">
+                    <i class="fa-solid fa-users"></i>
                     <h3>Our Workshops</h3>
                     <p>Empowering teams with design thinking and agile development through hands-on, collaborative workshops.</p>
                 </div>
