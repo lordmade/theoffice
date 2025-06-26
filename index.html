@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Office - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'Anklepants';
+            src: url('Anklepants.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -54,14 +61,16 @@
             width: auto;
         }
         nav .logo {
+            font-family: 'Anklepants', serif;
             font-size: 24px;
-            font-weight: 700;
+            font-weight: normal;
         }
         nav .nav-links {
             display: flex;
             gap: 24px;
         }
         nav .nav-link {
+            font-family: 'Anklepants', serif;
             position: relative;
             transition: all 0.3s ease;
             font-size: 16px;
@@ -87,7 +96,7 @@
             padding: 64px 0;
         }
         .hero-bg {
-            background: linear-gradient(to right, rgba(254, 232, 48, 0.8), rgba(255, 255, 255, 0.8)), url('hero-image.jpg');
+            background: linear-gradient(to right, rgba(254, 232, 48, 0.8), rgba(255, 255, 255, 0.8)), url('https://i.postimg.cc/pTKWTS5Q/Whats-App-Image-2025-06-26-at-14-40-25.jpg');
             background-size: cover;
             background-position: center;
             background-blend-mode: overlay;
@@ -102,8 +111,9 @@
             margin-bottom: 16px;
         }
         h1 {
+            font-family: 'Anklepants', serif;
             font-size: 48px;
-            font-weight: 700;
+            font-weight: normal;
             margin-bottom: 16px;
         }
         p {
@@ -146,15 +156,6 @@
             font-weight: 600;
             margin-bottom: 8px;
         }
-        .card a {
-            color: #FEE830;
-            text-decoration: none;
-            margin-top: 16px;
-            display: inline-block;
-        }
-        .card a:hover {
-            text-decoration: underline;
-        }
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -187,7 +188,7 @@
         <div class="container">
             <div class="logo-container">
                 <img src="logo.png" alt="The Office Logo" class="nav-logo">
-               
+                <a href="index.html" class="logo">The Office</a>
             </div>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
@@ -214,17 +215,14 @@
                 <div class="card">
                     <h3>Our Mission</h3>
                     <p>Inspiring individuals to express their uniqueness through innovative print solutions, fostering a creative and inclusive community.</p>
-                   
                 </div>
                 <div class="card">
                     <h3>Our Services</h3>
                     <p>Offering high-quality printing, copying, and graphic design services to bring your ideas to life with clarity and craftsmanship.</p>
-                  
                 </div>
                 <div class="card">
                     <h3>Our Workshops</h3>
                     <p>Empowering teams with design thinking and agile development through hands-on, collaborative workshops.</p>
-                 
                 </div>
             </div>
         </div>
