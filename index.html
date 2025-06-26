@@ -68,6 +68,7 @@
         nav .nav-links {
             display: flex;
             gap: 24px;
+            align-items: center;
         }
         nav .nav-link {
             font-family: 'Anklepants', serif;
@@ -91,6 +92,36 @@
         }
         nav .nav-link:hover::after {
             width: 100%;
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #21211d;
+            min-width: 160px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            top: 100%;
+            left: 0;
+            z-index: 1;
+        }
+        .dropdown:hover .dropdown-content,
+        .dropdown.active .dropdown-content {
+            display: block;
+    }
+        .dropdown-content a {
+            font-family: 'Anklepants', serif;
+            color: #ffffff;
+            padding: 12px 16px;
+            display: block;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .dropdown-content a:hover {
+            background-color: #FEE830;
+            color: #21211d;
         }
         section {
             padding: 64px 0;
@@ -179,6 +210,9 @@
             nav .nav-logo {
                 height: 24px;
             }
+            .dropdown-content {
+                min-width: 120px;
+            }
         }
     </style>
 </head>
@@ -187,11 +221,18 @@
         <div class="container">
             <div class="logo-container">
                 <img src="logo.png" alt="The Office Logo" class="nav-logo">
-                
+               
             </div>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
-                <a href="services.html" class="nav-link">Services</a>
+                <div class="dropdown">
+                    <a href="services.html" class="nav-link">Services</a>
+                    <div class="dropdown-content">
+                        <a href="#booking-exam">Booking for Exam</a>
+                        <a href="#conference">Conference</a>
+                        <a href="#others">Others</a>
+                    </div>
+                </div>
                 <a href="workshop.html" class="nav-link">Great Wall</a>
                 <a href="contact.html" class="nav-link">Notice Board</a>
             </div>
@@ -243,6 +284,20 @@
                 navbar.classList.add('navbar-scrolled');
             } else {
                 navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Toggle dropdown on click for touch devices
+        const dropdown = document.querySelector('.dropdown');
+        dropdown.addEventListener('click', (e) => {
+            e.preventDefault();
+            dropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('active');
             }
         });
     </script>
