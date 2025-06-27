@@ -1,20 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bookings - The Office</title>
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
   <style>
     @font-face {
       font-family: 'Anklepants';
       src: url('Anklepants-Regular.otf') format('opentype');
       font-weight: 400;
+      font-style: normal;
     }
+
     * {
-      margin: 0; padding: 0; box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: #f3f4f6;
@@ -24,70 +36,89 @@
       display: flex;
       flex-direction: column;
     }
+
     a {
       text-decoration: none;
       color: inherit;
     }
+
+    /* NAVBAR */
+
     nav {
       position: fixed;
-      top: 0; left: 0; width: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
       background-color: #21211d;
       color: #fff;
       padding: 16px 0;
       z-index: 50;
       transition: background-color 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     }
+
     nav.navbar-scrolled {
       background-color: rgba(33, 33, 29, 0.9);
       backdrop-filter: blur(10px);
     }
+
     .container {
       max-width: 1200px;
       margin: auto;
       padding: 0 16px;
     }
+
     .nav-content {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
+
     .logo-container {
       display: flex;
       align-items: center;
     }
+
     .nav-logo {
       height: 32px;
     }
+
     .nav-links {
       display: flex;
       gap: 24px;
       align-items: center;
-    }
-    .nav-link {
       font-family: 'Anklepants', serif;
       font-weight: 400;
+    }
+
+    .nav-link {
       position: relative;
       font-size: 16px;
       display: flex;
       align-items: center;
       padding: 8px 12px;
-      transition: transform 0.3s ease-in-out, color 0.3s ease-in-out, background-color 0.3s ease-in-out;
       color: #fff;
       cursor: pointer;
+      transition: transform 0.3s ease-in-out, color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+      border-radius: 4px;
+      user-select: none;
     }
+
     .nav-link i {
       margin-right: 8px;
       transition: transform 0.3s ease-in-out;
     }
+
     .nav-link:hover {
       transform: scale(1.05);
       color: #FEE830;
       background-color: #333333;
-      border-radius: 4px;
     }
+
     .nav-link:hover i {
       transform: scale(1.2);
     }
+
     .nav-link::after {
       content: '';
       position: absolute;
@@ -98,28 +129,38 @@
       transform: translateX(-50%);
       background: #FEE830;
       transition: width 0.3s ease-in-out;
+      border-radius: 2px;
     }
+
     .nav-link:hover::after {
       width: 80%;
     }
+
+    /* Dropdown */
+
     .dropdown {
       position: relative;
     }
+
     .dropdown-content {
       display: none;
       position: absolute;
       background-color: #21211d;
       min-width: 160px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
       border-radius: 4px;
       top: 100%;
       left: 0;
-      z-index: 1;
+      z-index: 10;
+      user-select: none;
     }
+
     .dropdown:hover .dropdown-content,
     .dropdown.active .dropdown-content {
       display: block;
+      animation: fadeInDown 0.25s ease forwards;
     }
+
     .dropdown-content a {
       font-family: 'Anklepants', serif;
       font-weight: 400;
@@ -129,106 +170,136 @@
       align-items: center;
       font-size: 14px;
       transition: transform 0.3s ease-in-out, color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+      border-radius: 0 0 4px 4px;
     }
+
     .dropdown-content a:hover {
       transform: translateX(5px);
       background-color: #333333;
       color: #FEE830;
     }
+
     .dropdown-content a:hover i {
       transform: scale(1.2);
     }
+
+    /* Hamburger */
+
     .hamburger {
       display: none;
       flex-direction: column;
       cursor: pointer;
       gap: 5px;
       padding: 10px;
+      user-select: none;
     }
+
     .hamburger span {
       width: 25px;
       height: 3px;
       background-color: #ffffff;
       transition: all 0.3s ease;
+      border-radius: 2px;
     }
+
     .hamburger.active span:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
     }
+
     .hamburger.active span:nth-child(2) {
       opacity: 0;
     }
+
     .hamburger.active span:nth-child(3) {
       transform: rotate(-45deg) translate(7px, -7px);
     }
-    .nav-links {
-      transition: transform 0.3s ease;
-    }
+
     .nav-links.mobile-hidden {
       transform: translateX(100%);
       display: none;
     }
+
     .nav-links.mobile-active {
       display: flex;
       flex-direction: column;
       position: fixed;
-      top: 0; right: 0;
+      top: 0;
+      right: 0;
       height: 100vh;
       width: 250px;
       background-color: #21211d;
       padding: 60px 20px;
-      transform: translateX(0);
       gap: 20px;
       z-index: 100;
       overflow-y: auto;
+      transition: transform 0.3s ease;
+      user-select: none;
     }
+
+    /* Main Content */
 
     main {
       flex-grow: 1;
-      padding: 100px 16px 40px;
+      padding: 120px 24px 40px;
       max-width: 600px;
       margin: auto;
       background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(254, 232, 48, 0.3);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(254, 232, 48, 0.15);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards 0.3s;
     }
 
     h1 {
       font-family: 'Anklepants', serif;
       font-weight: 400;
-      font-size: 36px;
+      font-size: 40px;
       text-align: center;
-      margin-bottom: 32px;
+      margin-bottom: 40px;
       color: #21211d;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      user-select: none;
     }
 
     form {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
     }
 
     label {
       font-weight: 600;
       font-size: 16px;
       color: #21211d;
+      user-select: none;
     }
 
-    input, select, textarea {
-      padding: 12px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+    input,
+    select,
+    textarea {
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 2px solid #d1d5db;
       font-size: 16px;
       font-family: 'Inter', sans-serif;
-      transition: border-color 0.3s ease;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: inset 0 0 6px #fff9c430;
+      background: #fffef9;
     }
-    input:focus, select:focus, textarea:focus {
+
+    input:focus,
+    select:focus,
+    textarea:focus {
       outline: none;
       border-color: #FEE830;
-      box-shadow: 0 0 8px #FEE830aa;
+      box-shadow: 0 0 12px #FEE830cc;
+      background: #fffdf4;
     }
 
     textarea {
-      min-height: 120px;
+      min-height: 140px;
       resize: vertical;
     }
 
@@ -236,22 +307,51 @@
       background-color: #21211d;
       color: #fff;
       border: none;
-      padding: 14px;
+      padding: 16px 0;
       border-radius: 9999px;
-      font-weight: 600;
-      font-size: 18px;
+      font-weight: 700;
+      font-size: 20px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-      max-width: 200px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      max-width: 220px;
       margin: 0 auto;
-      display: block;
+      user-select: none;
+      box-shadow: 0 6px 10px rgba(254, 232, 48, 0.5);
     }
+
     button:hover {
       background-color: #FEE830;
       color: #21211d;
+      box-shadow: 0 8px 20px rgba(254, 232, 48, 0.9);
+      transform: scale(1.05);
+    }
+
+    /* Animations */
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Responsive */
+
     @media (max-width: 768px) {
       .hamburger {
         display: flex;
@@ -263,7 +363,11 @@
         display: flex;
       }
       main {
-        margin: 100px 12px 40px;
+        margin: 100px 16px 40px;
+        padding: 80px 16px 32px;
+        max-width: 100%;
+        border-radius: 0;
+        box-shadow: none;
       }
     }
   </style>
@@ -274,22 +378,28 @@
   <div class="container">
     <div class="nav-content">
       <div class="logo-container">
-        <a href="index.html">
-          <img src="https://i.postimg.cc/k4WTpQLX/Whats-App-Image-2025-06-26-at-15-49-46-1-removebg-preview.png" alt="The Office Logo" class="nav-logo" />
+        <a href="index.html" aria-label="The Office Home">
+          <img
+            src="https://i.postimg.cc/k4WTpQLX/Whats-App-Image-2025-06-26-at-15-49-46-1-removebg-preview.png"
+            alt="The Office Logo"
+            class="nav-logo"
+          />
         </a>
       </div>
-      <div class="hamburger" id="hamburger">
+
+      <div class="hamburger" id="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
         <span></span><span></span><span></span>
       </div>
+
       <div class="nav-links mobile-hidden" id="nav-links">
         <a href="index.html" class="nav-link"><i class="fa-solid fa-home"></i> Home</a>
         <a href="services.html" class="nav-link"><i class="fa-solid fa-cogs"></i> Our Services</a>
         <div class="dropdown">
-          <a href="#" class="nav-link"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
-          <div class="dropdown-content">
-            <a href="#exam-booking"><i class="fa-solid fa-graduation-cap"></i> For Exam</a>
-            <a href="#conference-booking"><i class="fa-solid fa-users-rectangle"></i> Conference</a>
-            <a href="#other-booking"><i class="fa-solid fa-ellipsis"></i> Others</a>
+          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
+          <div class="dropdown-content" role="menu" aria-label="Bookings submenu">
+            <a href="#exam-booking" role="menuitem"><i class="fa-solid fa-graduation-cap"></i> For Exam</a>
+            <a href="#conference-booking" role="menuitem"><i class="fa-solid fa-users-rectangle"></i> Conference</a>
+            <a href="#other-booking" role="menuitem"><i class="fa-solid fa-ellipsis"></i> Others</a>
           </div>
         </div>
         <a href="greatwall.html" class="nav-link"><i class="fa-solid fa-building"></i> Great Wall</a>
@@ -303,15 +413,31 @@
 
 <main>
   <h1>Book Your Space</h1>
-  <form id="bookingForm">
+  <form id="bookingForm" novalidate>
     <label for="name">Full Name *</label>
-    <input type="text" id="name" name="name" placeholder="Your full name" required />
+    <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name" />
 
     <label for="email">Email Address *</label>
-    <input type="email" id="email" name="email" placeholder="you@example.com" required />
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="you@example.com"
+      required
+      autocomplete="email"
+    />
 
     <label for="phone">Phone Number *</label>
-    <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" required />
+    <input
+      type="tel"
+      id="phone"
+      name="phone"
+      placeholder="+1 234 567 8900"
+      required
+      autocomplete="tel"
+      pattern="^\+?\d{7,15}$"
+      title="Enter a valid phone number, e.g., +12345678900"
+    />
 
     <label for="bookingType">Booking Type *</label>
     <select id="bookingType" name="bookingType" required>
@@ -330,7 +456,7 @@
     <label for="details">Additional Details</label>
     <textarea id="details" name="details" placeholder="Tell us more about your booking..."></textarea>
 
-    <button type="submit">Submit Booking</button>
+    <button type="submit" aria-label="Submit booking form">Submit Booking</button>
   </form>
 </main>
 
@@ -351,7 +477,7 @@
     }
   });
 
-  // Hamburger menu toggle
+  // Hamburger toggle
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('nav-links');
   const dropdown = document.querySelector('.dropdown');
@@ -361,14 +487,24 @@
     navLinks.classList.toggle('mobile-active');
   });
 
-  // Dropdown toggle on mobile
-  dropdown.addEventListener('click', (e) => {
-    e.preventDefault();
-    dropdown.classList.toggle('active');
+  // Accessibility: allow toggling menu by keyboard
+  hamburger.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      hamburger.click();
+    }
+  });
+
+  // Dropdown toggle on mobile (click)
+  dropdown.querySelector('a').addEventListener('click', e => {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      dropdown.classList.toggle('active');
+    }
   });
 
   // Close menus when clicking outside
-  document.addEventListener('click', (e) => {
+  document.addEventListener('click', e => {
     if (!dropdown.contains(e.target) && !hamburger.contains(e.target) && !navLinks.contains(e.target)) {
       dropdown.classList.remove('active');
       navLinks.classList.remove('mobile-active');
@@ -376,23 +512,30 @@
     }
   });
 
-  // Set minimum date for booking date to today
+  // Set min date to today for date input
   const dateInput = document.getElementById('date');
   const today = new Date().toISOString().split('T')[0];
   dateInput.setAttribute('min', today);
 
-  // Form submission handler
+  // Form validation & submission
   const form = document.getElementById('bookingForm');
   form.addEventListener('submit', e => {
     e.preventDefault();
 
-    // Basic validation already handled by HTML required fields
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    // Here you can integrate with backend or email API
-
-    alert(`Thank you, ${data.name}! Your booking request for ${data.bookingType} on ${data.date} at ${data.time} has been received. We will contact you soon.`);
+    // Replace with backend or email API integration here
+    alert(
+      `Thank you, ${data.name}! Your booking request for ${
+        data.bookingType === 'exam' ? 'Online Exam - Space & Internet' : data.bookingType === 'conference' ? 'Conference Room' : 'Other'
+      } on ${data.date} at ${data.time} has been received. We will contact you soon.`
+    );
 
     form.reset();
   });
