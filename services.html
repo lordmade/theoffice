@@ -119,6 +119,48 @@
       width: 80%;
     }
 
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #21211d;
+      min-width: 160px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content,
+    .dropdown.active .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      font-family: 'Anklepants', serif;
+      font-weight: 400;
+      color: #ffffff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      transition: transform 0.3s ease-in-out, color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    }
+
+    .dropdown-content a:hover {
+      transform: translateX(5px);
+      background-color: #333333;
+      color: #FEE830;
+    }
+
+    .dropdown-content a:hover i {
+      transform: scale(1.2);
+    }
+
     .hero {
       background-color: #21211d;
       color: #fff;
@@ -208,15 +250,24 @@
         <div class="logo-container">
           <img src="https://i.postimg.cc/k4WTpQLX/Whats-App-Image-2025-06-26-at-15-49-46-1-removebg-preview.png" alt="The Office Logo" class="nav-logo">
         </div>
-       <div class="nav-links">
-  <a href="index.html" class="nav-link"><i class="fa-solid fa-home"></i> Home</a>
-  <a href="services.html" class="nav-link"><i class="fa-solid fa-cogs"></i> Our Services</a>
-  <a href="greatwall.html" class="nav-link"><i class="fa-solid fa-building"></i> Great Wall</a>
-  <a href="notice.html" class="nav-link"><i class="fa-solid fa-bell"></i> Notice Board</a>
-  <a href="#gallery" class="nav-link"><i class="fa-solid fa-image"></i> Gallery</a>
-  <a href="#contact" class="nav-link"><i class="fa-solid fa-envelope"></i> Contact</a>
-</div>
+        <div class="nav-links" id="nav-links">
+          <a href="index.html" class="nav-link"><i class="fa-solid fa-home"></i> Home</a>
+          <a href="services.html" class="nav-link"><i class="fa-solid fa-cogs"></i> Our Services</a>
 
+          <div class="dropdown">
+            <a href="#" class="nav-link"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
+            <div class="dropdown-content">
+              <a href="#booking-exam"><i class="fa-solid fa-graduation-cap"></i> For Exam</a>
+              <a href="#conference"><i class="fa-solid fa-users-rectangle"></i> Conference</a>
+              <a href="#others"><i class="fa-solid fa-ellipsis"></i> Others</a>
+            </div>
+          </div>
+
+          <a href="greatwall.html" class="nav-link"><i class="fa-solid fa-building"></i> Great Wall</a>
+          <a href="notice.html" class="nav-link"><i class="fa-solid fa-bell"></i> Notice Board</a>
+          <a href="#gallery" class="nav-link"><i class="fa-solid fa-image"></i> Gallery</a>
+          <a href="#contact" class="nav-link"><i class="fa-solid fa-envelope"></i> Contact</a>
+        </div>
       </div>
     </div>
   </nav>
@@ -274,13 +325,27 @@
   </footer>
 
   <script>
-    // Navbar scroll effect
+    // Scroll effect
     window.addEventListener('scroll', () => {
       const navbar = document.getElementById('navbar');
       if (window.scrollY > 50) {
         navbar.classList.add('navbar-scrolled');
       } else {
         navbar.classList.remove('navbar-scrolled');
+      }
+    });
+
+    // Dropdown toggle
+    const dropdown = document.querySelector('.dropdown');
+    dropdown.addEventListener('click', (e) => {
+      e.preventDefault();
+      dropdown.classList.toggle('active');
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('active');
       }
     });
   </script>
