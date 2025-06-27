@@ -504,34 +504,49 @@
     </section>
 
     <section id="contact" style="background-color: #ffffff;">
-        <div class="container">
-            <h2 class="section-title text-center">Contact Us</h2>
-            <div class="grid">
-                <div class="card">
-                    <i class="fa-solid fa-phone"></i>
-                    <h3>Phone</h3>
-                    <p>Reach us at <a href="tel:+1234567890">+1 (234) 567-890</a></p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-envelope"></i>
-                    <h3>Email</h3>
-                    <p>Contact us at <a href="mailto:info@theoffice.com">info@theoffice.com</a></p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-map-marker-alt"></i>
-                    <h3>Address</h3>
-                    <p>123 Print Street, Creativity City, CC 12345</p>
-                </div>
-            </div>
-          
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" required></textarea>
-                <button type="submit" class="btn">Send Message</button>
-            </form>
+  <div class="container">
+    <h2 class="section-title text-center">Contact Us</h2>
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: flex-start;">
+      <!-- Contact Info -->
+      <div class="grid" style="gap: 20px;">
+        <div class="card">
+          <i class="fa-solid fa-phone"></i>
+          <h3>Phone</h3>
+          <p><a href="tel:+1234567890" style="color: inherit; text-decoration: none;">+1 (234) 567-890</a></p>
         </div>
-    </section>
+        <div class="card">
+          <i class="fa-solid fa-envelope"></i>
+          <h3>Email</h3>
+          <p><a href="mailto:info@theoffice.com" style="color: inherit; text-decoration: none;">info@theoffice.com</a></p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-map-marker-alt"></i>
+          <h3>Address</h3>
+          <p>123 Print Street, Creativity City, CC 12345</p>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <form class="contact-form card" style="padding: 32px;">
+        <h3 style="margin-bottom: 16px; font-size: 22px;">Send us a message</h3>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <i class="fa-solid fa-user" style="color: #FEE830;"></i>
+          <input type="text" placeholder="Your Name" required style="flex: 1;">
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <i class="fa-solid fa-envelope" style="color: #FEE830;"></i>
+          <input type="email" placeholder="Your Email" required style="flex: 1;">
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+          <i class="fa-solid fa-message" style="color: #FEE830; margin-top: 12px;"></i>
+          <textarea placeholder="Your Message" required style="flex: 1;"></textarea>
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
 
     <footer>
         <div class="container">
