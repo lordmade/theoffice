@@ -84,11 +84,12 @@
     }
 
     .nav-links {
-      display: flex;
+      display: flex; /* Fix: default display flex */
       gap: 24px;
       align-items: center;
       font-family: 'Anklepants', serif;
       font-weight: 400;
+      user-select: none;
     }
 
     .nav-link {
@@ -214,26 +215,33 @@
       transform: rotate(-45deg) translate(7px, -7px);
     }
 
-    .nav-links.mobile-hidden {
-      transform: translateX(100%);
-      display: none;
-    }
+    /* Mobile Nav Styles */
 
-    .nav-links.mobile-active {
-      display: flex;
-      flex-direction: column;
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 100vh;
-      width: 250px;
-      background-color: #21211d;
-      padding: 60px 20px;
-      gap: 20px;
-      z-index: 100;
-      overflow-y: auto;
-      transition: transform 0.3s ease;
-      user-select: none;
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+      .nav-links {
+        display: none; /* hide default nav links on mobile */
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 250px;
+        background-color: #21211d;
+        padding: 60px 20px;
+        gap: 20px;
+        z-index: 100;
+        overflow-y: auto;
+        user-select: none;
+      }
+      .nav-links.mobile-active {
+        display: flex !important;
+      }
+      main {
+        padding: 120px 16px 40px;
+      }
     }
 
     /* Main Content */
@@ -241,7 +249,7 @@
     main {
       flex-grow: 1;
       padding: 120px 24px 40px;
-      max-width: 600px;
+      max-width: 1100px;
       margin: auto;
       background: #fff;
       border-radius: 12px;
@@ -249,13 +257,22 @@
       opacity: 0;
       transform: translateY(20px);
       animation: fadeInUp 0.8s ease forwards 0.3s;
+      display: flex;
+      gap: 48px;
+      align-items: center;
+    }
+
+    /* Left form container */
+
+    .booking-form-container {
+      flex: 1;
+      min-width: 320px;
     }
 
     h1 {
       font-family: 'Anklepants', serif;
       font-weight: 400;
       font-size: 40px;
-      text-align: center;
       margin-bottom: 40px;
       color: #21211d;
       letter-spacing: 0.06em;
@@ -313,10 +330,10 @@
       font-size: 20px;
       cursor: pointer;
       transition: background-color 0.3s ease, color 0.3s ease;
-      max-width: 220px;
-      margin: 0 auto;
+      width: 100%;
       user-select: none;
       box-shadow: 0 6px 10px rgba(254, 232, 48, 0.5);
+      max-width: none;
     }
 
     button:hover {
@@ -324,6 +341,24 @@
       color: #21211d;
       box-shadow: 0 8px 20px rgba(254, 232, 48, 0.9);
       transform: scale(1.05);
+    }
+
+    /* Right image container */
+
+    .booking-image-container {
+      flex: 1;
+      min-width: 320px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .booking-image-container img {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(254, 232, 48, 0.4);
+      object-fit: cover;
+      user-select: none;
     }
 
     /* Animations */
@@ -350,26 +385,22 @@
       }
     }
 
-    /* Responsive */
+    /* Responsive stack on mobile */
 
     @media (max-width: 768px) {
-      .hamburger {
-        display: flex;
-      }
-      .nav-links {
-        display: none;
-      }
-      .nav-links.mobile-active {
-        display: flex;
-      }
       main {
-        margin: 100px 16px 40px;
-        padding: 80px 16px 32px;
+        flex-direction: column;
+        padding: 120px 16px 40px;
+      }
+      .booking-image-container {
+        margin-top: 40px;
+      }
+      .booking-image-container img {
         max-width: 100%;
-        border-radius: 0;
-        box-shadow: none;
+        height: auto;
       }
     }
+
   </style>
 </head>
 <body>
@@ -397,79 +428,72 @@
         <div class="dropdown">
           <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
           <div class="dropdown-content" role="menu" aria-label="Bookings submenu">
-            <a href="#exam-booking" role="menuitem"><i class="fa-solid fa-graduation-cap"></i> For Exam</a>
+            <a href="#booking-exam" role="menuitem"><i class="fa-solid fa-graduation-cap"></i> Online Exams</a>
             <a href="#conference-booking" role="menuitem"><i class="fa-solid fa-users-rectangle"></i> Conference</a>
             <a href="#other-booking" role="menuitem"><i class="fa-solid fa-ellipsis"></i> Others</a>
           </div>
         </div>
         <a href="greatwall.html" class="nav-link"><i class="fa-solid fa-building"></i> Great Wall</a>
         <a href="notice.html" class="nav-link"><i class="fa-solid fa-bell"></i> Notice Board</a>
-        <a href="services.html#gallery" class="nav-link"><i class="fa-solid fa-image"></i> Gallery</a>
-        <a href="services.html#contact" class="nav-link"><i class="fa-solid fa-envelope"></i> Contact</a>
+        <a href="#gallery" class="nav-link"><i class="fa-solid fa-image"></i> Gallery</a>
       </div>
     </div>
   </div>
 </nav>
 
 <main>
-  <h1>Book Your Space</h1>
-  <form id="bookingForm" novalidate>
-    <label for="name">Full Name *</label>
-    <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name" />
+  <section class="booking-form-container" aria-labelledby="booking-title">
+    <h1 id="booking-title">Book Our Space & Internet</h1>
 
-    <label for="email">Email Address *</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      placeholder="you@example.com"
-      required
-      autocomplete="email"
+    <form id="bookingForm" novalidate>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Your full name" required />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="+123 456 7890" required />
+
+      <label for="bookingType">Booking Type</label>
+      <select id="bookingType" name="bookingType" required>
+        <option value="" disabled selected>Select booking type</option>
+        <option value="exam">Online Exam - Space & Internet</option>
+        <option value="conference">Conference Room</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="date">Booking Date</label>
+      <input type="date" id="date" name="date" required />
+
+      <label for="time">Booking Time</label>
+      <input type="time" id="time" name="time" required />
+
+      <label for="details">Additional Details</label>
+      <textarea
+        id="details"
+        name="details"
+        placeholder="Tell us more about your booking..."
+        rows="4"
+      ></textarea>
+
+      <button type="submit" aria-label="Submit booking form">Submit Booking</button>
+    </form>
+  </section>
+
+  <section class="booking-image-container" aria-hidden="true">
+    <img
+      src="https://images.unsplash.com/photo-1581091870627-5a6d25d987a0?auto=format&fit=crop&w=800&q=80"
+      alt="Workspace with computers and people booking"
+      loading="lazy"
     />
-
-    <label for="phone">Phone Number *</label>
-    <input
-      type="tel"
-      id="phone"
-      name="phone"
-      placeholder="+1 234 567 8900"
-      required
-      autocomplete="tel"
-      pattern="^\+?\d{7,15}$"
-      title="Enter a valid phone number, e.g., +12345678900"
-    />
-
-    <label for="bookingType">Booking Type *</label>
-    <select id="bookingType" name="bookingType" required>
-      <option value="" disabled selected>Select booking type</option>
-      <option value="exam">Online Exam - Space & Internet</option>
-      <option value="conference">Conference Room</option>
-      <option value="other">Other</option>
-    </select>
-
-    <label for="date">Booking Date *</label>
-    <input type="date" id="date" name="date" required min="" />
-
-    <label for="time">Booking Time *</label>
-    <input type="time" id="time" name="time" required />
-
-    <label for="details">Additional Details</label>
-    <textarea id="details" name="details" placeholder="Tell us more about your booking..."></textarea>
-
-    <button type="submit" aria-label="Submit booking form">Submit Booking</button>
-  </form>
+  </section>
 </main>
 
-<footer>
-  <div class="container" style="text-align:center; padding:16px; background:#21211d; color:#fff;">
-    <p>© 2025 The Office. All rights reserved.</p>
-  </div>
-</footer>
-
 <script>
-  // Navbar scroll effect
-  const navbar = document.getElementById('navbar');
+  // Navbar scroll background effect
   window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
     if (window.scrollY > 50) {
       navbar.classList.add('navbar-scrolled');
     } else {
@@ -477,7 +501,6 @@
     }
   });
 
-  // Hamburger toggle
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('nav-links');
   const dropdown = document.querySelector('.dropdown');
@@ -487,25 +510,21 @@
     navLinks.classList.toggle('mobile-active');
   });
 
-  // Accessibility: allow toggling menu by keyboard
-  hamburger.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      hamburger.click();
-    }
-  });
-
-  // Dropdown toggle on mobile (click)
-  dropdown.querySelector('a').addEventListener('click', e => {
+  // Dropdown toggle on mobile
+  dropdown.querySelector('a').addEventListener('click', (e) => {
     if (window.innerWidth <= 768) {
       e.preventDefault();
       dropdown.classList.toggle('active');
     }
   });
 
-  // Close menus when clicking outside
-  document.addEventListener('click', e => {
-    if (!dropdown.contains(e.target) && !hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+  // Close menus on outside click
+  document.addEventListener('click', (e) => {
+    if (
+      !dropdown.contains(e.target) &&
+      !hamburger.contains(e.target) &&
+      !navLinks.contains(e.target)
+    ) {
       dropdown.classList.remove('active');
       navLinks.classList.remove('mobile-active');
       hamburger.classList.remove('active');
@@ -517,9 +536,9 @@
   const today = new Date().toISOString().split('T')[0];
   dateInput.setAttribute('min', today);
 
-  // Form validation & submission
+  // Form submit handler
   const form = document.getElementById('bookingForm');
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     if (!form.checkValidity()) {
@@ -530,16 +549,18 @@
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    // Replace with backend or email API integration here
     alert(
       `Thank you, ${data.name}! Your booking request for ${
-        data.bookingType === 'exam' ? 'Online Exam - Space & Internet' : data.bookingType === 'conference' ? 'Conference Room' : 'Other'
+        data.bookingType === 'exam'
+          ? 'Online Exam - Space & Internet'
+          : data.bookingType === 'conference'
+          ? 'Conference Room'
+          : 'Other'
       } on ${data.date} at ${data.time} has been received. We will contact you soon.`
     );
 
     form.reset();
   });
 </script>
-
 </body>
 </html>
