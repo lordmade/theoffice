@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Services - The Office</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    @font-face {
+      font-family: 'Anklepants';
+      src: url('Anklepants-Regular.otf') format('opentype');
+      font-weight: 400;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f3f4f6;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 16px;
+    }
+
+    nav {
+      background-color: #21211d;
+      color: #fff;
+      padding: 16px 0;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      height: 32px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Anklepants', serif;
+      transition: 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #FEE830;
+    }
+
+    .hero {
+      background: url('https://i.postimg.cc/k4WTpQLX/Whats-App-Image-2025-06-26-at-15-49-46-1-removebg-preview.png') no-repeat center;
+      background-size: contain;
+      background-color: #21211d;
+      text-align: center;
+      color: #fff;
+      padding: 100px 20px 60px;
+    }
+
+    .hero h1 {
+      font-family: 'Anklepants', serif;
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Anklepants', serif;
+      font-size: 32px;
+      text-align: center;
+      margin: 40px 0 24px;
+      border-bottom: 2px solid #FEE830;
+      display: inline-block;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      padding: 40px 0;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 4px 6px rgba(254, 232, 48, 0.2);
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(254, 232, 48, 0.4);
+    }
+
+    .card i {
+      font-size: 36px;
+      margin-bottom: 16px;
+      color: #000;
+    }
+
+    .card h3 {
+      font-family: 'Anklepants', serif;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 16px;
+    }
+
+    footer {
+      background-color: #21211d;
+      color: #fff;
+      text-align: center;
+      padding: 16px 0;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="container nav-content">
+      <img src="https://i.postimg.cc/k4WTpQLX/Whats-App-Image-2025-06-26-at-15-49-46-1-removebg-preview.png" alt="Logo" class="nav-logo">
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="greatwall.html" class="nav-link">Great Wall</a>
+        <a href="notice.html" class="nav-link">Notice Board</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Our Services</h1>
+    <p>We bring your ideas to life through printing, design, branding and events support — crafted with creativity and precision.</p>
+  </section>
+
+  <!-- Services Section -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">What We Offer</h2>
+      <div class="services-grid">
+        <div class="card">
+          <i class="fa-solid fa-print"></i>
+          <h3>Printing & Copying</h3>
+          <p>High-quality digital and offset printing services for documents, flyers, and promotional materials.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-paintbrush"></i>
+          <h3>Graphic Design</h3>
+          <p>Custom branding, logos, and artwork tailored to elevate your visual identity and message.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-bullhorn"></i>
+          <h3>Marketing Materials</h3>
+          <p>From business cards to banners — we create impactful tools to grow your business.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-calendar-check"></i>
+          <h3>Event Bookings</h3>
+          <p>Conference space rentals, exam setups, and other event hosting solutions with full support.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-shirt"></i>
+          <h3>Custom Apparel</h3>
+          <p>Branded t-shirts, caps and uniforms — perfect for staff, schools, and organizations.</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-globe"></i>
+          <h3>Digital Services</h3>
+          <p>Web presence design, digital flyers, social media content and QR menus tailored for your brand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2025 The Office. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
