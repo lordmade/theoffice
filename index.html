@@ -63,27 +63,32 @@
             color: #ffffff;
             text-decoration: none;
         }
-        nav .logo-container {
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo-container {
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        nav .nav-logo {
+        .nav-logo {
             height: 32px;
             width: auto;
             line-height: 0;
         }
-        nav .logo {
+        .logo {
             font-family: 'Anklepants', serif;
             font-size: 24px;
             font-weight: 400;
         }
-        nav .nav-links {
+        .nav-links {
             display: flex;
             gap: 24px;
             align-items: center;
         }
-        nav .nav-link {
+        .nav-link {
             font-family: 'Anklepants', serif;
             font-weight: 400;
             position: relative;
@@ -93,13 +98,13 @@
             align-items: center;
             padding: 8px 12px;
         }
-        nav .nav-link:hover {
+        .nav-link:hover {
             transform: scale(1.05);
             color: #FEE830;
             background-color: #333333;
             border-radius: 4px;
         }
-        nav .nav-link::after {
+        .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
@@ -110,7 +115,7 @@
             background: #FEE830;
             transition: width 0.3s ease-in-out;
         }
-        nav .nav-link:hover::after {
+        .nav-link:hover::after {
             width: 80%;
         }
         .nav-link i, .dropdown-content a i {
@@ -162,7 +167,6 @@
             cursor: pointer;
             gap: 5px;
             padding: 10px;
-            margin-left: auto; /* Push hamburger to the right */
         }
         .hamburger span {
             width: 25px;
@@ -281,6 +285,28 @@
             padding: 16px 0;
             text-align: center;
         }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+        }
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .contact-form button {
+            align-self: flex-start;
+        }
         @media (max-width: 768px) {
             h1 {
                 font-size: 32px;
@@ -291,7 +317,18 @@
             .container {
                 padding: 0 12px;
             }
-            nav .nav-links {
+            .nav-content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .logo-container {
+                flex-grow: 1;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .nav-links {
                 display: none;
                 position: fixed;
                 top: 0;
@@ -305,16 +342,16 @@
                 transform: translateX(100%);
                 transition: transform 0.3s ease;
             }
-            nav .nav-links.active {
+            .nav-links.active {
                 display: flex;
                 transform: translateX(0);
             }
-            nav .nav-link {
+            .nav-link {
                 font-size: 18px;
                 padding: 10px 0;
                 width: 100%;
             }
-            nav .nav-link i {
+            .nav-link i {
                 font-size: 18px;
             }
             .dropdown-content {
@@ -330,11 +367,7 @@
             .dropdown-content a i {
                 font-size: 16px;
             }
-            .hamburger {
-                display: flex;
-                margin-left: auto; /* Ensure hamburger is on the right */
-            }
-            nav .nav-logo {
+            .nav-logo {
                 height: 24px;
             }
             .section-title {
@@ -358,27 +391,31 @@
 <body>
     <nav id="navbar">
         <div class="container">
-           
-                <img src="https://i.postimg.cc/k4WTpQLX/Whats-App-Image-2025-06-26-at-15-49-46-1-removebg-preview.png" alt="The Office Logo" class="nav-logo">
-           
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="nav-links" id="nav-links">
-                <a href="index.html" class="nav-link"><i class="fa-solid fa-home"></i> Home</a>
-                <a href="services.html" class="nav-link"><i class="fa-solid fa-cogs"></i> Our Services</a>
-                <div class="dropdown">
-                    <a href="services.html" class="nav-link"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
-                    <div class="dropdown-content">
-                        <a href="#booking-exam"><i class="fa-solid fa-graduation-cap"></i> For Exam</a>
-                        <a href="#conference"><i class="fa-solid fa-users-rectangle"></i> Conference</a>
-                        <a href="#others"><i class="fa-solid fa-ellipsis"></i> Others</a>
-                    </div>
+            <div class="nav-content">
+                <div class="logo-container">
+                    <img src="https://i.postimg.cc/k4WTpQLX/Whats-App-Image-2025-06-26-at-15-49-46-1-removebg-preview.png" alt="The Office Logo" class="nav-logo">
                 </div>
-                <a href="greatwall.html" class="nav-link"><i class="fa-solid fa-building"></i> Great Wall</a>
-                <a href="notice.html" class="nav-link"><i class="fa-solid fa-bell"></i> Notice Board</a>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="nav-links" id="nav-links">
+                    <a href="index.html" class="nav-link"><i class="fa-solid fa-home"></i> Home</a>
+                    <a href="#about" class="nav-link"><i class="fa-solid fa-info-circle"></i> About Us</a>
+                    <a href="services.html" class="nav-link"><i class="fa-solid fa-cogs"></i> Our Services</a>
+                    <div class="dropdown">
+                        <a href="services.html" class="nav-link"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
+                        <div class="dropdown-content">
+                            <a href="#booking-exam"><i class="fa-solid fa-graduation-cap"></i> For Exam</a>
+                            <a href="#conference"><i class="fa-solid fa-users-rectangle"></i> Conference</a>
+                            <a href="#others"><i class="fa-solid fa-ellipsis"></i> Others</a>
+                        </div>
+                    </div>
+                    <a href="greatwall.html" class="nav-link"><i class="fa-solid fa-building"></i> Great Wall</a>
+                    <a href="notice.html" class="nav-link"><i class="fa-solid fa-bell"></i> Notice Board</a>
+                    <a href="#contact" class="nav-link"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -388,6 +425,32 @@
             <source src="video1.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+    </section>
+
+    <section id="about" style="background-color: #ffffff;">
+        <div class="container">
+            <h2 class="section-title text-center">About Us</h2>
+            <div class="grid">
+                <div class="card">
+                    <i class="fa-solid fa-handshake"></i>
+                    <h3>Our Story</h3>
+                    <p>Founded in 2010, The Office has been a cornerstone in providing innovative print and design solutions, driven by a passion for creativity and customer satisfaction.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-star"></i>
+                    <h3>Our Values</h3>
+                    <p>We prioritize quality, integrity, and community, ensuring every project reflects our commitment to excellence and collaboration.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-globe"></i>
+                    <h3>Our Vision</h3>
+                    <p>To empower individuals and businesses worldwide with accessible, high-quality print and design services that inspire and innovate.</p>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 32px;">
+                <a href="#contact" class="btn">Get in Touch</a>
+            </div>
+        </div>
     </section>
 
     <section id="highlights" style="background-color: #ffffff;">
@@ -410,6 +473,35 @@
                     <p>Empowering teams with design thinking and agile development through hands-on, collaborative workshops.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="contact" style="background-color: #ffffff;">
+        <div class="container">
+            <h2 class="section-title text-center">Contact Us</h2>
+            <div class="grid">
+                <div class="card">
+                    <i class="fa-solid fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p>Reach us at <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>Contact us at <a href="mailto:info@theoffice.com">info@theoffice.com</a></p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-map-marker-alt"></i>
+                    <h3>Address</h3>
+                    <p>123 Print Street, Creativity City, CC 12345</p>
+                </div>
+            </div>
+            <form class="contact-form" style="margin-top: 32px;">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
         </div>
     </section>
 
