@@ -279,18 +279,33 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 32px;
         }
-        footer {
-            background-color: #21211d;
-            color: #ffffff;
-            padding: 16px 0;
-            text-align: center;
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(254, 232, 48, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px rgba(254, 232, 48, 0.7);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
         }
         .contact-form {
             display: flex;
             flex-direction: column;
             gap: 16px;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 32px auto 0;
         }
         .contact-form input,
         .contact-form textarea {
@@ -306,6 +321,12 @@
         }
         .contact-form button {
             align-self: flex-start;
+        }
+        footer {
+            background-color: #21211d;
+            color: #ffffff;
+            padding: 16px 0;
+            text-align: center;
         }
         @media (max-width: 768px) {
             h1 {
@@ -385,6 +406,9 @@
             .hero-bg {
                 min-height: 80vh;
             }
+            .gallery-item img {
+                height: 150px;
+            }
         }
     </style>
 </head>
@@ -402,7 +426,7 @@
                 </div>
                 <div class="nav-links" id="nav-links">
                     <a href="index.html" class="nav-link"><i class="fa-solid fa-home"></i> Home</a>
-                    <a href="#about" class="nav-link"><i class="fa-solid fa-info-circle"></i> About Us</a>
+                    <a href="#about" class="nav-link"><i class="fa-solid fa-info-circle"></i> About Brasília </a>
                     <a href="services.html" class="nav-link"><i class="fa-solid fa-cogs"></i> Our Services</a>
                     <div class="dropdown">
                         <a href="services.html" class="nav-link"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
@@ -414,7 +438,7 @@
                     </div>
                     <a href="greatwall.html" class="nav-link"><i class="fa-solid fa-building"></i> Great Wall</a>
                     <a href="notice.html" class="nav-link"><i class="fa-solid fa-bell"></i> Notice Board</a>
-                    <a href="#contact" class="nav-link"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+                    <a href="#gallery" class="nav-link"><i class="fa-solid fa-image"></i> Gallery</a>
                 </div>
             </div>
         </div>
@@ -496,7 +520,22 @@
                     <p>123 Print Street, Creativity City, CC 12345</p>
                 </div>
             </div>
-            <form class="contact-form" style="margin-top: 32px;">
+            <h3 class="section-title text-center" id="gallery">Our Gallery</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200?text=Print+Shop" alt="Print Shop">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200?text=Design+Studio" alt="Design Studio">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200?text=Workshop" alt="Workshop">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200?text=Team+Work" alt="Team Work">
+                </div>
+            </div>
+            <form class="contact-form">
                 <input type="text" placeholder="Your Name" required>
                 <input type="email" placeholder="Your Email" required>
                 <textarea placeholder="Your Message" required></textarea>
