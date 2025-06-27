@@ -410,6 +410,25 @@
                 height: 150px;
             }
         }
+        .get-service-btn {
+    display: inline-block;
+    background-color: #FEE830;
+    color: #21211d;
+    padding: 14px 32px;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+}
+
+.get-service-btn:hover {
+    background-color: #21211d;
+    color: #FEE830;
+    transform: scale(1.05);
+}
+
     </style>
 </head>
 <body>
@@ -443,12 +462,16 @@
         </div>
     </nav>
 
-    <section id="home" class="hero-bg">
-        <video autoplay loop muted playsinline>
-            <source src="video1.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </section>
+   <section id="home" class="hero-bg">
+    <video autoplay loop muted playsinline>
+        <source src="video1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div style="position: relative; z-index: 1; padding-bottom: 64px;">
+        <a href="#services" class="btn get-service-btn">Get Our Service</a>
+    </div>
+</section>
+
 
     <section id="about" style="background-color: #ffffff;">
         <div class="container">
