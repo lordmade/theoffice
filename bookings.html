@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bookings - The Office</title>
-  
+
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
   <style>
     @font-face {
@@ -41,8 +41,6 @@
       text-decoration: none;
       color: inherit;
     }
-
-    /* NAVBAR */
 
     nav {
       position: fixed;
@@ -84,7 +82,7 @@
     }
 
     .nav-links {
-      display: flex; /* Fix: default display flex */
+      display: flex;
       gap: 24px;
       align-items: center;
       font-family: 'Anklepants', serif;
@@ -100,9 +98,8 @@
       padding: 8px 12px;
       color: #fff;
       cursor: pointer;
-      transition: transform 0.3s ease-in-out, color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
       border-radius: 4px;
-      user-select: none;
     }
 
     .nav-link i {
@@ -130,14 +127,11 @@
       transform: translateX(-50%);
       background: #FEE830;
       transition: width 0.3s ease-in-out;
-      border-radius: 2px;
     }
 
     .nav-link:hover::after {
       width: 80%;
     }
-
-    /* Dropdown */
 
     .dropdown {
       position: relative;
@@ -148,12 +142,10 @@
       position: absolute;
       background-color: #21211d;
       min-width: 160px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-      border-radius: 4px;
       top: 100%;
       left: 0;
+      border-radius: 4px;
       z-index: 10;
-      user-select: none;
     }
 
     .dropdown:hover .dropdown-content,
@@ -163,15 +155,12 @@
     }
 
     .dropdown-content a {
-      font-family: 'Anklepants', serif;
-      font-weight: 400;
-      color: #ffffff;
       padding: 12px 16px;
       display: flex;
       align-items: center;
       font-size: 14px;
-      transition: transform 0.3s ease-in-out, color 0.3s ease-in-out, background-color 0.3s ease-in-out;
-      border-radius: 0 0 4px 4px;
+      color: #ffffff;
+      transition: all 0.3s ease-in-out;
     }
 
     .dropdown-content a:hover {
@@ -180,19 +169,12 @@
       color: #FEE830;
     }
 
-    .dropdown-content a:hover i {
-      transform: scale(1.2);
-    }
-
-    /* Hamburger */
-
     .hamburger {
       display: none;
       flex-direction: column;
       cursor: pointer;
       gap: 5px;
       padding: 10px;
-      user-select: none;
     }
 
     .hamburger span {
@@ -200,7 +182,6 @@
       height: 3px;
       background-color: #ffffff;
       transition: all 0.3s ease;
-      border-radius: 2px;
     }
 
     .hamburger.active span:nth-child(1) {
@@ -215,14 +196,13 @@
       transform: rotate(-45deg) translate(7px, -7px);
     }
 
-    /* Mobile Nav Styles */
-
     @media (max-width: 768px) {
       .hamburger {
         display: flex;
       }
+
       .nav-links {
-        display: none; /* hide default nav links on mobile */
+        display: none;
         flex-direction: column;
         position: fixed;
         top: 0;
@@ -233,18 +213,12 @@
         padding: 60px 20px;
         gap: 20px;
         z-index: 100;
-        overflow-y: auto;
-        user-select: none;
       }
+
       .nav-links.mobile-active {
         display: flex !important;
       }
-      main {
-        padding: 120px 16px 40px;
-      }
     }
-
-    /* Main Content */
 
     main {
       flex-grow: 1;
@@ -254,15 +228,11 @@
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(254, 232, 48, 0.15);
-      opacity: 0;
-      transform: translateY(20px);
       animation: fadeInUp 0.8s ease forwards 0.3s;
       display: flex;
       gap: 48px;
       align-items: center;
     }
-
-    /* Left form container */
 
     .booking-form-container {
       flex: 1;
@@ -271,13 +241,8 @@
 
     h1 {
       font-family: 'Anklepants', serif;
-      font-weight: 400;
       font-size: 40px;
       margin-bottom: 40px;
-      color: #21211d;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      user-select: none;
     }
 
     form {
@@ -288,35 +253,17 @@
 
     label {
       font-weight: 600;
-      font-size: 16px;
-      color: #21211d;
-      user-select: none;
     }
 
-    input,
-    select,
-    textarea {
+    input, select, textarea {
       padding: 14px 16px;
       border-radius: 10px;
       border: 2px solid #d1d5db;
       font-size: 16px;
-      font-family: 'Inter', sans-serif;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: inset 0 0 6px #fff9c430;
       background: #fffef9;
     }
 
-    input:focus,
-    select:focus,
-    textarea:focus {
-      outline: none;
-      border-color: #FEE830;
-      box-shadow: 0 0 12px #FEE830cc;
-      background: #fffdf4;
-    }
-
     textarea {
-      min-height: 140px;
       resize: vertical;
     }
 
@@ -329,21 +276,14 @@
       font-weight: 700;
       font-size: 20px;
       cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      width: 100%;
-      user-select: none;
       box-shadow: 0 6px 10px rgba(254, 232, 48, 0.5);
-      max-width: none;
     }
 
     button:hover {
       background-color: #FEE830;
       color: #21211d;
       box-shadow: 0 8px 20px rgba(254, 232, 48, 0.9);
-      transform: scale(1.05);
     }
-
-    /* Right image container */
 
     .booking-image-container {
       flex: 1;
@@ -356,81 +296,49 @@
       width: 100%;
       max-width: 480px;
       border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(254, 232, 48, 0.4);
       object-fit: cover;
-      user-select: none;
     }
 
-    /* Animations */
-
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
 
     @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
     }
-
-    /* Responsive stack on mobile */
 
     @media (max-width: 768px) {
       main {
         flex-direction: column;
-        padding: 120px 16px 40px;
       }
+
       .booking-image-container {
         margin-top: 40px;
       }
-      .booking-image-container img {
-        max-width: 100%;
-        height: auto;
-      }
     }
-
   </style>
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav id="navbar">
   <div class="container">
     <div class="nav-content">
       <div class="logo-container">
-        <a href="index.html" aria-label="The Office Home">
-          <img
-            src="https://i.postimg.cc/k4WTpQLX/Whats-App-Image-2025-06-26-at-15-49-46-1-removebg-preview.png"
-            alt="The Office Logo"
-            class="nav-logo"
-          />
-        </a>
+        <a href="index.html"><img src="https://i.postimg.cc/k4WTpQLX/Whats-App-Image-2025-06-26-at-15-49-46-1-removebg-preview.png" class="nav-logo" /></a>
       </div>
-
-      <div class="hamburger" id="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
-        <span></span><span></span><span></span>
-      </div>
-
-      <div class="nav-links mobile-hidden" id="nav-links">
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+      <div class="nav-links" id="nav-links">
         <a href="index.html" class="nav-link"><i class="fa-solid fa-home"></i> Home</a>
         <a href="services.html" class="nav-link"><i class="fa-solid fa-cogs"></i> Our Services</a>
         <div class="dropdown">
-          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
-          <div class="dropdown-content" role="menu" aria-label="Bookings submenu">
-            <a href="#booking-exam" role="menuitem"><i class="fa-solid fa-graduation-cap"></i> Online Exams</a>
-            <a href="#conference-booking" role="menuitem"><i class="fa-solid fa-users-rectangle"></i> Conference</a>
-            <a href="#other-booking" role="menuitem"><i class="fa-solid fa-ellipsis"></i> Others</a>
+          <a href="#" class="nav-link"><i class="fa-solid fa-calendar-check"></i> Bookings</a>
+          <div class="dropdown-content">
+            <a href="#"><i class="fa-solid fa-graduation-cap"></i> Online Exams</a>
+            <a href="#"><i class="fa-solid fa-users-rectangle"></i> Conference</a>
+            <a href="#"><i class="fa-solid fa-ellipsis"></i> Others</a>
           </div>
         </div>
         <a href="greatwall.html" class="nav-link"><i class="fa-solid fa-building"></i> Great Wall</a>
@@ -441,20 +349,17 @@
   </div>
 </nav>
 
+<!-- BOOKING FORM -->
 <main>
-  <section class="booking-form-container" aria-labelledby="booking-title">
-    <h1 id="booking-title">Book Our Space & Internet</h1>
-
-    <form id="bookingForm" novalidate>
+  <section class="booking-form-container">
+    <h1>Book Our Space & Internet</h1>
+    <form id="bookingForm">
       <label for="name">Full Name</label>
-      <input type="text" id="name" name="name" placeholder="Your full name" required />
-
+      <input type="text" id="name" name="name" required />
       <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" placeholder="you@example.com" required />
-
+      <input type="email" id="email" name="email" required />
       <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" name="phone" placeholder="+123 456 7890" required />
-
+      <input type="tel" id="phone" name="phone" required />
       <label for="bookingType">Booking Type</label>
       <select id="bookingType" name="bookingType" required>
         <option value="" disabled selected>Select booking type</option>
@@ -462,85 +367,54 @@
         <option value="conference">Conference Room</option>
         <option value="other">Other</option>
       </select>
-
       <label for="date">Booking Date</label>
       <input type="date" id="date" name="date" required />
-
       <label for="time">Booking Time</label>
       <input type="time" id="time" name="time" required />
-
       <label for="details">Additional Details</label>
-      <textarea
-        id="details"
-        name="details"
-        placeholder="Tell us more about your booking..."
-        rows="4"
-      ></textarea>
-
-      <button type="submit" aria-label="Submit booking form">Submit Booking</button>
+      <textarea id="details" name="details"></textarea>
+      <button type="submit">Submit Booking</button>
     </form>
   </section>
 
-  <section class="booking-image-container" aria-hidden="true">
-    <img
-      src="https://images.unsplash.com/photo-1581091870627-5a6d25d987a0?auto=format&fit=crop&w=800&q=80"
-      alt="Workspace with computers and people booking"
-      loading="lazy"
-    />
+  <section class="booking-image-container">
+    <img src="https://images.unsplash.com/photo-1581091870627-5a6d25d987a0?auto=format&fit=crop&w=800&q=80" />
   </section>
 </main>
 
 <script>
-  // Navbar scroll background effect
+  // Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDScHqHTANLWCKH52dzbj2E5I_2kGfH360",
+    authDomain: "wblogin-4cc7c.firebaseapp.com",
+    databaseURL: "https://wblogin-4cc7c-default-rtdb.firebaseio.com",
+    projectId: "wblogin-4cc7c",
+    storageBucket: "wblogin-4cc7c.appspot.com",
+    messagingSenderId: "844089102374",
+    appId: "1:844089102374:web:82271330a05583dcde56e7",
+    measurementId: "G-CSS78QFCEQ"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  // Navbar scroll effect
   window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-      navbar.classList.add('navbar-scrolled');
-    } else {
-      navbar.classList.remove('navbar-scrolled');
-    }
+    navbar.classList.toggle('navbar-scrolled', window.scrollY > 50);
   });
 
+  // Hamburger toggle
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('nav-links');
-  const dropdown = document.querySelector('.dropdown');
-
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navLinks.classList.toggle('mobile-active');
   });
 
-  // Dropdown toggle on mobile
-  dropdown.querySelector('a').addEventListener('click', (e) => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      dropdown.classList.toggle('active');
-    }
-  });
-
-  // Close menus on outside click
-  document.addEventListener('click', (e) => {
-    if (
-      !dropdown.contains(e.target) &&
-      !hamburger.contains(e.target) &&
-      !navLinks.contains(e.target)
-    ) {
-      dropdown.classList.remove('active');
-      navLinks.classList.remove('mobile-active');
-      hamburger.classList.remove('active');
-    }
-  });
-
-  // Set min date to today for date input
-  const dateInput = document.getElementById('date');
-  const today = new Date().toISOString().split('T')[0];
-  dateInput.setAttribute('min', today);
-
-  // Form submit handler
+  // Booking Form Submit
   const form = document.getElementById('bookingForm');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
@@ -549,18 +423,21 @@
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    alert(
-      `Thank you, ${data.name}! Your booking request for ${
-        data.bookingType === 'exam'
-          ? 'Online Exam - Space & Internet'
-          : data.bookingType === 'conference'
-          ? 'Conference Room'
-          : 'Other'
-      } on ${data.date} at ${data.time} has been received. We will contact you soon.`
-    );
-
-    form.reset();
+    db.ref('bookings').push({
+      ...data,
+      timestamp: Date.now()
+    }).then(() => {
+      alert(`Thank you, ${data.name}! Your booking has been submitted.`);
+      form.reset();
+    }).catch((error) => {
+      alert("Error submitting booking.");
+      console.error(error);
+    });
   });
+
+  // Min date today
+  const dateInput = document.getElementById('date');
+  dateInput.min = new Date().toISOString().split("T")[0];
 </script>
 </body>
 </html>
